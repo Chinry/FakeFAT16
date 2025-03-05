@@ -6,9 +6,10 @@
 
 TEST_GROUP(GeneratorOpTest)
 {
-   
+
 };
 
 TEST(GeneratorOpTest, nothingDoNothing)
 {
+    
 }
