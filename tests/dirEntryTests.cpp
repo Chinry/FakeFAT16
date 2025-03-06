@@ -5,12 +5,15 @@
 #include <iostream>
 #include <CppUTest/TestHarness.h>
 
-TEST_GROUP(dirEntry)
-{
-
-};
-
-TEST(dirEntry, canReadDirEntry)
+TEST_GROUP(dirEntryTest)
 {
     
+};
+
+TEST(dirEntryTest, canReadDirEntry)
+{
+    mockFile_init(32);
+    ff_setFuncs(mockFile_mockRead, mockFile_mockWrite, mockFile_mockLseek);
+
+    mockFile_close();
 }

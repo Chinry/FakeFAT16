@@ -1,4 +1,7 @@
 #pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <stdio.h>
 #include <stdint.h>
 #include <unistd.h>
@@ -32,3 +35,7 @@ void writeDirEntry(int fd, dirEntry *entry, int offset);
 dirEntry readDirEntry(int fd, size_t offset);
 int findFreeDirEntry(int fd, int offset);
 openDir findDirEntry(int fd, const char *path);
+
+#ifdef __cplusplus
+}
+#endif

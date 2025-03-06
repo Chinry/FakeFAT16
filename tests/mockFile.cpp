@@ -2,32 +2,38 @@
 #include <unistd.h>
 #include <algorithm>
 
-mockFile::mockFile(size_t fileSize)
+char *fakeFile;
+int fileSize;
+int position;
+
+void mockFile_init(size_t size)
 {
     fakeFile = new char[fileSize];
-    this->fileSize = fileSize;
+    fileSize = size;
     position = 0;
 }
 
-mockFile::~mockFile()
+void mockFile_close()
 {
     delete [] fakeFile;
 }
 
-int mockFile::mockRead(int fd, void *buffer, size_t n)
+int mockFile_mockRead(int fd, void *buffer, size_t n)
 {
     std::copy(fakeFile + position, fakeFile + position + n, static_cast<char*>(buffer));
+    position += n;
     return 0;
 }
 
-int mockFile::mockWrite(int fd, const void *buffer, size_t n)
+int mockFile_mockWrite(int fd, const void *buffer, size_t n)
 {
     const char *charBuf = static_cast<const char*>(buffer);
     std::copy(charBuf, charBuf + n, fakeFile + position);
+    position += n;
     return 0;
 }
 
-off_t mockFile::mockLseek(int fd, off_t offset, int whence)
+off_t mockFile_mockLseek(int fd, off_t offset, int whence)
 {
     if (whence == SEEK_SET)
         position = offset;
