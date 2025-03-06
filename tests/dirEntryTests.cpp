@@ -1,15 +1,16 @@
 #include "../dirEntry.h"
 #include "../ff_actions.h"
+#include "mockFile.hpp"
 #include <sstream>
 #include <iostream>
 #include <CppUTest/TestHarness.h>
 
-TEST_GROUP(GeneratorOpTest)
+TEST_GROUP(dirEntry)
 {
 
 };
 
-TEST(GeneratorOpTest, nothingDoNothing)
+TEST(dirEntry, canReadDirEntry)
 {
     
 }
